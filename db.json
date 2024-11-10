@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Aloe",
       "image": "./images/aloe.jpg",
-      "price": 15.99
+      "price": 15.94
     },
     {
       "id": 2,
@@ -41,6 +41,13 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
+    },
+    {
+      "name": "flower",
+      "image": "https://www.google.com/imgres?q=ramen&imgurl=https%3A%2F%2Foryoki.de%2Fmedia%2Fimage%2Fnews%2F55%2Fmd%2Fmiso-shiitake_preview.jpg&imgrefurl=https%3A%2F%2Foryoki.de%2Fblog%2Fmiso-ramen-with-recipe&docid=r5PkzhISkBPIXM&tbnid=vlS7nIFxChOPqM&vet=12ahUKEwj5_sf4gY6JAxX5gP0HHd2XCiUQM3oECG8QAA..i&w=842&h=400&hcb=2&ved=2ahUKEwj5_sf4gY6JAxX5gP0HHd2XCiUQM3oECG8QAA",
+      "price": 13.67,
+      "soldOut": false,
+      "id": 8
     }
   ]
 }

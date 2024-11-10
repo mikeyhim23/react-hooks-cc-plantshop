@@ -1,18 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 
-function PlantCard() {
+function PlantCard({ id, name, image, price, soldOut, toggleSoldOut, editPrice, deletePlant }) {
+  const [newPrice, setNewPrice] = useState(price);
+  const [editing, setEditing] = useState(false);
+
+  const handlePriceChange = (e) => {
+    setNewPrice(e.target.value)
+  }
+
+  const handleSavePrice = () => {
+    if (!isNaN(newPrice) && newPrice > 0) {
+      editPrice(id, parseFloat(newPrice))
+      setEditing(false)
+    } else {
+      alert("INvalid price")
+    }
+  }
+
   return (
     <li className="card" data-testid="plant-item">
-      <img src={"https://via.placeholder.com/400"} alt={"plant name"} />
-      <h4>{"plant name"}</h4>
-      <p>Price: {"plant price"}</p>
-      {true ? (
-        <button className="primary">In Stock</button>
+      <img src={image} alt={name} />
+      <h4>{name}</h4>
+
+      <p>
+        Price:{" "}
+        {editing ? (
+          <input
+            type="number"
+            value={newPrice}
+            onChange={handlePriceChange}
+            step="0.01"
+          />
+        ) : (
+          `$${price.toFixed(2)}`
+        )}
+      </p>
+
+      {editing ? (
+        <button onClick={handleSavePrice}>Save Price</button>
       ) : (
-        <button>Out of Stock</button>
+        <button onClick={() => setEditing(true)}>Edit Price</button>
       )}
+
+      {soldOut ? (
+        <button onClick={toggleSoldOut}>Out of Stock</button>
+      ) : (
+        <button onClick={toggleSoldOut} className="primary">
+          In Stock
+        </button>
+      )}
+
+      <button onClick={() => deletePlant(id)}>Delete</button>
     </li>
   );
 }
 
 export default PlantCard;
+
