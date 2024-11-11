@@ -1,22 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NewPlantForm from "./NewPlantForm";
 import PlantList from "./PlantList";
 import Search from "./Search";
 
-function PlantPage() {
-  const [plants, setPlants] = useState([])
+function PlantPage({ plants, addPlant, sellOut }) {
+  const [searchPlant, setSearchPlant] = useState("")
 
-  useEffect(() => {
-    fetch("http://localhost:6001/plants")
-      .then((res) => res.json())
-      .then((data) => setPlants(data))
-  }, [])
-
+  const filteredPlants = plants.filter(plant => plant.name.toLowerCase().includes(searchPlant))
+  
   return (
     <main>
-      <NewPlantForm setPlants={setPlants} />
-      <Search />
-      <PlantList plants={plants} setPlants={setPlants} />
+      <NewPlantForm  addPlant={addPlant}/>
+      <Search setSearchPlant={setSearchPlant}/>
+      <PlantList plants={filteredPlants} sellOut={sellOut}/>
     </main>
   );
 }

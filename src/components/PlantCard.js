@@ -1,59 +1,20 @@
 import React, { useState } from "react";
 
-function PlantCard({ id, name, image, price, soldOut, toggleSoldOut, editPrice, deletePlant }) {
-  const [newPrice, setNewPrice] = useState(price);
-  const [editing, setEditing] = useState(false);
+function PlantCard({ plant, sellOut }) {
+  const [sold, setSold] = useState(plant.sold || false)
 
-  const handlePriceChange = (e) => {
-    setNewPrice(e.target.value)
+  function handleSellOut() {
+    sellOut(plant)
+    setSold(true)
   }
-
-  const handleSavePrice = () => {
-    if (!isNaN(newPrice) && newPrice > 0) {
-      editPrice(id, parseFloat(newPrice))
-      setEditing(false)
-    } else {
-      alert("INvalid price")
-    }
-  }
-
   return (
     <li className="card" data-testid="plant-item">
-      <img src={image} alt={name} />
-      <h4>{name}</h4>
-
-      <p>
-        Price:{" "}
-        {editing ? (
-          <input
-            type="number"
-            value={newPrice}
-            onChange={handlePriceChange}
-            step="0.01"
-          />
-        ) : (
-          `$${price.toFixed(2)}`
-        )}
-      </p>
-
-      {editing ? (
-        <button onClick={handleSavePrice}>Save Price</button>
-      ) : (
-        <button onClick={() => setEditing(true)}>Edit Price</button>
-      )}
-
-      {soldOut ? (
-        <button onClick={toggleSoldOut}>Out of Stock</button>
-      ) : (
-        <button onClick={toggleSoldOut} className="primary">
-          In Stock
-        </button>
-      )}
-
-      <button onClick={() => deletePlant(id)}>Delete</button>
+      <img src={plant.image} alt={plant.name} />
+      <h4>{plant.name}</h4>
+      <p>Price: {plant.price}</p>
+      {!sold ? (<button className="primary" onClick={handleSellOut}>In Stock</button>) : (<button>Out of Stock</button>)}
     </li>
   );
 }
 
 export default PlantCard;
-
