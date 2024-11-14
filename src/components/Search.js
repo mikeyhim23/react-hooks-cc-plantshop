@@ -1,18 +1,24 @@
-import React from "react";
+// Search.js
+import React, { useState } from 'react';
 
-function Search({ setSearchPlant }) {
+const Search = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    onSearch(e.target.value);
+  };
+
   return (
-    <div className="searchbar">
-      <label htmlFor="search">Search Plants:</label>
+    <div>
       <input
         type="text"
-        id="search"
-        placeholder="Type a name to search..."
-        onChange={(e) => setSearchPlant(e.target.value)}
+        placeholder="Type a name to search..."  // Updated placeholder text
+        value={searchTerm}
+        onChange={handleSearchChange}
       />
     </div>
   );
-}
+};
 
 export default Search;
-

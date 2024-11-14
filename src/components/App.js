@@ -1,6 +1,6 @@
-import React, {useState, useEffect } from "react";
-import Header from "./Header";
-import PlantPage from "./PlantPage";
+import React, { useState, useEffect} from "react";
+import Header from "./Header"
+import PlantPage from "./PlantPage"
 
 function App() {
   return (
@@ -8,7 +8,7 @@ function App() {
       <Header />
       <PlantPage />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
